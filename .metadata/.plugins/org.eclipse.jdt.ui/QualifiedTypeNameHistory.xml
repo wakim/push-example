@@ -14,11 +14,11 @@
 <fullyQualifiedTypeName name="org.apache.http.impl.client.DefaultHttpClient"/>
 <fullyQualifiedTypeName name="org.apache.http.util.EntityUtils"/>
 <fullyQualifiedTypeName name="org.primefaces.json.JSONArray"/>
-<fullyQualifiedTypeName name="org.primefaces.json.JSONObject"/>
 <fullyQualifiedTypeName name="org.slf4j.Logger"/>
 <fullyQualifiedTypeName name="org.apache.logging.log4j.core.Logger"/>
 <fullyQualifiedTypeName name="org.apache.logging.log4j.Logger"/>
 <fullyQualifiedTypeName name="java.util.logging.Logger"/>
 <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
 <fullyQualifiedTypeName name="com.pubnub.api.Pubnub"/>
+<fullyQualifiedTypeName name="org.primefaces.json.JSONObject"/>
 </qualifiedTypeNameHistroy>

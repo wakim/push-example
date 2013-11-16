@@ -114,7 +114,7 @@ public class UserManagedBean {
 		try {
 			JSONObject obj = new JSONObject();
 			
-			obj.put("response", "response to " + event.getData());
+			obj.put("message", "response to " + event.getData());
 			obj.put("no-reply", true);
 			
 			pusherService.triggerEvent("private-testando", "sh-all", obj, event.getUuid());
