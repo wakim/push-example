@@ -1,0 +1,16 @@
+package com.primefaces.pusher.service;
+
+import org.jboss.resteasy.spi.HttpResponse;
+import org.primefaces.json.JSONObject;
+
+import com.pusher.Pusher;
+
+public class PusherService {
+	public void triggerEvent(String channelName, String eventName, JSONObject data) throws IllegalStateException {
+		HttpResponse res = Pusher.triggerPush(channelName, eventName, data.toString());
+	
+		if(res.getResponseCode() != 200) {
+			throw new IllegalStateException("ReponseCode != 200");
+		}
+	}
+}

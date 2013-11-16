@@ -1,0 +1,23 @@
+package com.primefaces.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(name="PusherAuthenticationServlet", urlPatterns={"/pusher/auth"})
+public class PusherAuthServlet extends HttpServlet {
+	private static final long serialVersionUID = -1975754668041256508L;
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// Os parametros passados sao socket_id, channel.
+		// A principio o channel deve ter alguma relação com algum recurso do usuário (Projeto, Sprint, Conta, etc...)
+		// E poderia ser validado se os dados da sessao do usuário bate com o channel passado.
+		
+		Pusher pusher = new Pusher();
+	}
+}

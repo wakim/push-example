@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+org.eclipse.core.variables.valueVariables=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<valueVariables>\r\n<valueVariable description\="" name\="JBOSS_HOME" readOnly\="false" value\="D\:\\work\\jboss-as-7.1.1.Final"/>\r\n<valueVariable description\="" name\="STATIC_HOME" readOnly\="false" value\="D\:\\work\\static_files"/>\r\n</valueVariables>\r\n

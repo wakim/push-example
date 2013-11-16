@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JSFSample" basedir="." default="deploy">
+
+	<property environment="env"/>
+	
+	<!-- definindo as propriedades de nome-->
+	<property name="name.project" value="jsf_samples" />
+	<property name="name.war" value="${name.project}.war" />
+	<property name="name.jar" value="${name.project}.jar" />
+	<property name="name.ear" value="${name.project}.ear" />
+
+	<!-- definicao das propriedades dos arquivos -->
+	<property name="dir" value="." />
+	<property name="dir.src" value="${dir}/src" />
+	<property name="dir.build" value="${dir}/build" />
+	<property name="dir.webcontent" value="${dir}/WebContent" />
+	<property name="dir.web-inf" value="${dir.webcontent}/WEB-INF" />
+	<property name="dir.bin" value="${dir.build}/classes" />
+	<property name="dir.lib" value="${dir.web-inf}/lib" />
+	<property name="dir.ejbLib" value="${dir.web-inf}/ejbLib" />
+	<property name="dir.web-inf.classes" value="${dir.web-inf}/classes" />
+	<property name="dir.war" value="${dir}/war" />
+	<property name="dir.ear" value="${dir}/ear" />
+	<property name="dir.ear.lib" value="${dir.ear}/lib" />
+	<property name="dir.src.js" value="${dir}/includes/js" />
+	<property name="dir.src.css" value="${dir}/includes/css" />
+	
+	<!-- definindo as propriedades de deploy-->
+	<property name="jboss.home" value="${env.JBOSS_HOME}" />
+	<property name="jboss.default" value="${jboss.home}/standalone" />
+	<property name="jboss.deploy" value="${jboss.default}/deployments" />
+	<property name="jboss.client" value="${jboss.home}/client" />
+	<property name="jboss.common.lib" value="${jboss.home}/common/lib" />
+	<property name="deploy.home" value="${jboss.deploy}" />
+
+	<!-- definindo as propriedades do modulo web-->
+	<property name="webxml.file" value="${dir.webcontent}/WEB-INF/web.xml" />
+
+	<!-- definindo as propriedades do ear-->
+	<property name="dir.metainf" value="${dir.webcontent}/META-INF" />
+	<property name="session.jar.file" value="${dir}/${name.jar}" />
+	<property name="application.ear.file" value="${dir}/${name.ear}" />
+	
+	<property name="static.home" value="${env.STATIC_HOME}" />
+
+	<target name="clearEARFolder" description="Limpa a pasta utilizada para gerar o ear">
+		<!-- Limpa a pasta do EAR -->
+		<delete dir="${dir.ear}" />
+		<mkdir dir="${dir.ear}" />
+	</target>
+	
+	<target name="importPusher">
+		<delete file="${dir.ejbLib}/PusherConnector.jar" />
+		<jar destfile="${dir.ejbLib}/PusherConnector.jar" update="true">
+			<fileset dir="${basedir}/../PusherConnector/target/" />
+		</jar>
+	</target>
+	
+	<target name="exportResources" description="Exporta os recursos web que necessitam de tratamento especial">
+		<delete dir="${static.home}/js" failonerror="false"/>
+		<copy todir="${static.home}/js">
+			<fileset dir="${dir.src.js}" />
+		</copy>
+
+		<delete dir="${static.home}/ss" failonerror="false"/>
+		<copy todir="${static.home}/ss">
+			<fileset dir="${dir.src.css}" />
+		</copy>
+
+		<delete dir="${dir.bin.css}"/>
+		<delete dir="${dir.bin.js}"/>
+		<delete dir="${dir.webcontent}/js"/>
+		<delete dir="${dir.webcontent}/ss"/>
+	</target>
+	
+	<target name="war" depends="clearEARFolder, importPusher, exportResources">
+		<war destfile="${dir.ear}/${name.war}" webxml="${dir.web-inf}/web.xml">
+			<fileset dir="${dir.webcontent}">
+				<exclude name="**/*.jar" />
+			</fileset>
+			<lib dir="${dir.lib}"></lib>
+			<classes dir="${dir.bin}">
+				<exclude name="*.xml" />
+			</classes>
+		</war>
+	</target>
+	
+	<target name="ear" depends="war">
+	    <copy todir="${dir.ear}">
+			<fileset dir="${dir.ejbLib}" includes="PusherConnector.jar" />
+		</copy>
+		<ear destfile="${basedir}/${name.ear}" appxml="${dir.src}/application.xml">
+			<metainf dir="${dir.metainf}" />
+			<fileset dir="${dir.ear}" />
+		</ear>
+	</target>
+
+	<target name="deploy" depends="ear">
+		<copy todir="${jboss.deploy}">
+			<fileset dir="${basedir}" includes="${name.ear}" />
+		</copy>
+	
+	</target>
+	
+	<target name="undeploy">
+		<delete file="${jboss.deploy}/${name.ear}" />
+	</target>
+
+</project>

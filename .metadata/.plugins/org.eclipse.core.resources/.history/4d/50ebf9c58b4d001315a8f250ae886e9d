@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+  <sub-deployment name="jsf_sample.war">
+     <dependencies> 
+       <module name="org.jboss.resteasy.resteasy-jaxrs" services="export"/> 
+    </dependencies>
+  </sub-deployment>
+  <deployment>
+    <exclusions>
+        <module name="javax.faces.api" slot="main" />
+        <module name="com.sun.jsf-impl" slot="main" />
+    </exclusions>
+    <dependencies>
+        <module name="org.apache.log4j" />
+        <module name="org.dom4j" />
+        <module name="org.apache.commons.logging" />
+        <module name="org.apache.commons.collections" />
+        <module name="org.jboss.resteasy.resteasy-jaxrs" services="export"/> 
+        <module name="org.apache.httpcomponents" services="export"/> 
+    </dependencies>
+  </deployment>
+</jboss-deployment-structure>

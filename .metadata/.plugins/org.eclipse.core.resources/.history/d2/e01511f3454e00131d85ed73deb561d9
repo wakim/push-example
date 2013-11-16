@@ -1,0 +1,11 @@
+package com.primefaces.pusher.service;
+
+import org.primefaces.json.JSONObject;
+
+import com.pusher.Pusher;
+
+public class PusherService {
+	public void triggerEvent(String channelName, String eventName, JSONObject data) {
+		HttpResponse res = Pusher.triggerPush(channelName, eventName, data.toString());
+	}
+}

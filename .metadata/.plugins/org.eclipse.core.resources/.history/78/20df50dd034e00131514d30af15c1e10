@@ -1,0 +1,3202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facelet-taglib version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibary_2_0.xsd">
+ <namespace>http://componentes.gpe/component/gpe</namespace>
+ <tag>
+  <description>
+            &lt;p&gt;Renders an HTML "input"
+            element of "type" "text".&lt;/p&gt;
+            &lt;p&gt;&lt;a name="decode"&gt;Decode Behavior&lt;/a&gt;&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt;Obtain the &lt;code&gt;Map&lt;/code&gt; from the
+            "requestParameterMap"
+            property of the &lt;code&gt;ExternalContext&lt;/code&gt;. If the
+            &lt;code&gt;Map&lt;/code&gt; contains an entry for the "clientId" of
+            the
+            component, pass the value of the entry to the
+            &lt;code&gt;setSubmittedValue()&lt;/code&gt; method of the
+            component, which
+            must be an instance of &lt;code&gt;EditableValueHolder&lt;/code&gt;.&lt;/p&gt;
+            &lt;/ul&gt;
+            &lt;p&gt;Encode Behavior&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt; Render the clientId of the component as
+            the value of the "name" attribute. Render the current value of
+            the component as the value of the "value" attribute. If the
+            "styleClass" attribute is specified, render its value as the value
+            of the "class" attribute.
+            &lt;/p&gt;
+            &lt;/ul&gt;
+        </description>
+  <tag-name>inputText</tag-name>
+  <component>
+   <component-type>customInputText</component-type>
+   <handler-class/>
+  </component>
+  <attribute>
+   <description>Indica se o componente agrupa outros componentes. 
+				Uma de suas utilizações é de informar ao containerFormulario que
+				ele deve considerar apenas os filhos deste componente para serem escritos.
+				Valor default é false</description>
+   <name>groupComponent</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Converter instance registered with this component.
+            </description>
+   <name>converter</name>
+   <required>false</required>
+   <type>javax.faces.convert.Converter</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the converter message, replacing any message
+                that comes from the converter.
+            </description>
+   <name>converterMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The component identifier for this component. This value must be
+                unique within the closest parent component that is a naming
+                container.
+            </description>
+   <name>id</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component's value must be
+                converted and validated immediately (that is, during
+                Apply Request Values phase), rather than waiting
+                until Process Validations phase.
+            </description>
+   <name>immediate</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating whether or not this component should be rendered
+                (during Render Response Phase), or processed on any subsequent
+                form submit. The default value for this property is true.
+            </description>
+   <name>rendered</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that the user is required to provide a submitted
+                value for this input component.
+            </description>
+   <name>required</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validation message for the "required"
+                facility, if the "required" facility is used.
+            </description>
+   <name>requiredMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                MethodExpression representing a validator method that will be
+                called
+                during Process Validations to perform correctness checks on the
+                value of this component. The expression must evaluate to a
+                public
+                method that takes FacesContext, UIComponent, and Object
+                parameters,
+                with a return type of void.
+            </description>
+   <name>validator</name>
+   <required>false</required>
+   <method-signature>void validate(javax.faces.context.FacesContext,
+                javax.faces.component.UIComponent, java.lang.Object)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validator message, replacing any
+                message that comes from the validator.
+            </description>
+   <name>validatorMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The current value of this component.
+            </description>
+   <name>value</name>
+   <required>false</required>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>
+                &lt;p&gt;
+                MethodExpression representing a value change listener method
+                that will be notified when a new value has been set for this
+                input component. The expression must evaluate to a public
+                method that takes a &lt;code&gt;ValueChangeEvent&lt;/code&gt;
+                parameter,
+                with a return type of void, &lt;span class="changed_added_2_0"&gt;or
+                to a public method that takes no arguments with a return type
+                of void. In the latter case, the method has no way of easily
+                knowing what the new value is, but this can be useful in cases
+                where a notification is needed that "this value
+                changed".&lt;/span&gt;
+                &lt;/p&gt;
+            </description>
+   <name>valueChangeListener</name>
+   <required>false</required>
+   <method-signature>void
+                valueChange(javax.faces.event.ValueChangeEvent)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                Access key that, when pressed, transfers focus
+                to this element.
+            </description>
+   <name>accesskey</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Alternate textual description of the
+                element rendered by this component.
+            </description>
+   <name>alt</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                If the value of this attribute is "off", render "off" as the
+                value
+                of the attribute. This indicates that the browser should
+                disable its autocomplete feature for this component. This is
+                useful for components that perform autocompletion and do not
+                want the browser interfering. If this attribute is not set or
+                the value
+                is "on", render nothing.
+            </description>
+   <name>autocomplete</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Direction indication for text that does not inherit
+                directionality.
+                Valid values are "LTR" (left-to-right) and "RTL"
+                (right-to-left).
+            </description>
+   <name>dir</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this element must never receive focus or
+                be included in a subsequent submit. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as disabled="disabled".
+            </description>
+   <name>disabled</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>Indica o label que será renderizado junto com o componente caso ele esteja dentro de um containerFormulario.
+            </description>
+   <name>label</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Code describing the language used in the generated markup
+                for this component.
+            </description>
+   <name>lang</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The maximum number of characters that may
+                be entered in this field.
+            </description>
+   <name>maxlength</name>
+   <required>false</required>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus.
+            </description>
+   <name>onblur</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus
+                and its value has been modified since gaining focus.
+            </description>
+   <name>onchange</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                clicked over this element.
+            </description>
+   <name>onclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                double clicked over this element.
+            </description>
+   <name>ondblclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element receives focus.
+            </description>
+   <name>onfocus</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed down over this element.
+            </description>
+   <name>onkeydown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed and released over this element.
+            </description>
+   <name>onkeypress</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                released over this element.
+            </description>
+   <name>onkeyup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                pressed down over this element.
+            </description>
+   <name>onmousedown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved within this element.
+            </description>
+   <name>onmousemove</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved away from this element.
+            </description>
+   <name>onmouseout</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved onto this element.
+            </description>
+   <name>onmouseover</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                released over this element.
+            </description>
+   <name>onmouseup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when text within this
+                element is selected by the user.
+            </description>
+   <name>onselect</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component will prohibit changes by
+                the user. The element may receive focus unless it has also
+                been disabled. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as readonly="readonly".
+            </description>
+   <name>readonly</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                The number of characters used to determine
+                the width of this field.
+            </description>
+   <name>size</name>
+   <required>false</required>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <description>
+                CSS style(s) to be applied when this component is rendered.
+            </description>
+   <name>style</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Possui valor default.
+                Space-separated list of CSS style class(es) to be applied when
+                this element is rendered. This value must be passed through
+                as the "class" attribute on generated markup.
+            </description>
+   <name>styleClass</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Position of this element in the tabbing order
+                for the current document. This value must be
+                an integer between 0 and 32767.
+            </description>
+   <name>tabindex</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Advisory title information about markup elements generated
+                for this component.
+            </description>
+   <name>title</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The ValueExpression linking this component to a property in a
+                backing bean
+            </description>
+   <name>binding</name>
+   <required>false</required>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+  <attribute>
+   <description>Indica se o símbolo de campo obrigatório deve ser mostrado junto com o inputText.
+Valor default 'false'.</description>
+   <name>obrigatorio</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>Specifies a short hint that describes the expected value of the input field</description>
+   <name>placeholder</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>For knockout.js use.</description>
+   <name>data-bind</name>
+  </attribute>
+ </tag>
+ <tag>
+  <description>Possui valor default.
+            If the "styleClass", "style", "dir" or "lang"
+            attributes are present, render a "span" element. If the
+            "styleClass" attribute is present, render its value as the value
+            of the "class" attribute. If the "style" attribute is present,
+            pass it thru. If the "escape" attribute is not present, or it is
+            present and its value is "true" all angle brackets should be
+            converted to the ampersand xx semicolon syntax when rendering the
+            value of the "value" attribute as the value of the component. If
+            the "escape" attribute is present and is "false" the value of the
+            component should be rendered as text without escaping.
+        </description>
+  <tag-name>outputText</tag-name>
+  <component>
+   <component-type>customOutputText</component-type>
+   <renderer-type>org.gpe.text</renderer-type>
+   <handler-class/>
+  </component>
+  <attribute>
+   <description>
+                Converter instance registered with this component.
+            </description>
+   <name>converter</name>
+   <required>false</required>
+   <type>javax.faces.convert.Converter</type>
+  </attribute>
+  <attribute>
+   <description>
+                The component identifier for this component. This value must be
+                unique within the closest parent component that is a naming
+                container.
+            </description>
+   <name>id</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating whether or not this component should be rendered
+                (during Render Response Phase), or processed on any subsequent
+                form submit. The default value for this property is true.
+            </description>
+   <name>rendered</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                The current value of this component.
+            </description>
+   <name>value</name>
+   <required>false</required>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>
+                Direction indication for text that does not inherit
+                directionality.
+                Valid values are "LTR" (left-to-right) and "RTL"
+                (right-to-left).
+            </description>
+   <name>dir</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that characters that are sensitive
+                in HTML and XML markup must be escaped. This flag
+                is set to "true" by default.
+            </description>
+   <name>escape</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Code describing the language used in the generated markup
+                for this component.
+            </description>
+   <name>lang</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                CSS style(s) to be applied when this component is rendered.
+            </description>
+   <name>style</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Space-separated list of CSS style class(es) to be applied when
+                this element is rendered. This value must be passed through
+                as the "class" attribute on generated markup.
+            </description>
+   <name>styleClass</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Advisory title information about markup elements generated
+                for this component.
+            </description>
+   <name>title</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The ValueExpression linking this component to a property in a
+                backing bean
+            </description>
+   <name>binding</name>
+   <required>false</required>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+  <attribute>
+   <description>Indica o label que será renderizado junto com o componente caso ele esteja dentro de um containerFormulario.</description>
+   <name>label</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Indica se o componente agrupa outros componentes. 
+				Uma de suas utilizações é de informar ao containerFormulario que
+				ele deve considerar apenas os filhos deste componente para serem escritos.
+				Valor default é false</description>
+   <name>groupComponent</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>For Knockout.js use</description>
+   <name>data-bind</name>
+  </attribute>
+ </tag>
+ <tag>
+  <description>
+            Renders an HTML "label" element. Render the current value
+            of the component as label text if it is specified. If a "for"
+            attribute is
+            specified, find the component specified by the value of the "for"
+            attribute, and render its client id as the value of the "for"
+            attribute.
+            If "styleClass" attribute is specified, render its value as the
+            value
+            of the "class" attribute.
+        </description>
+  <tag-name>label</tag-name>
+  <component>
+   <component-type>customOutputLabel</component-type>
+   <renderer-type>gpe.outputLabel</renderer-type>
+   <handler-class/>
+  </component>
+  <attribute>
+   <description>Indica se o componente agrupa outros componentes. 
+				Uma de suas utilizações é de informar ao containerFormulario que
+				ele deve considerar apenas os filhos deste componente para serem escritos.
+				Valor default é false</description>
+   <name>groupComponent</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Converter instance registered with this component.
+            </description>
+   <name>converter</name>
+   <required>false</required>
+   <type>javax.faces.convert.Converter</type>
+  </attribute>
+  <attribute>
+   <description>
+                The component identifier for this component. This value must be
+                unique within the closest parent component that is a naming
+                container.
+            </description>
+   <name>id</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating whether or not this component should be rendered
+                (during Render Response Phase), or processed on any subsequent
+                form submit. The default value for this property is true.
+            </description>
+   <name>rendered</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                The current value of this component.
+            </description>
+   <name>value</name>
+   <required>false</required>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>
+                Access key that, when pressed, transfers focus
+                to this element.
+            </description>
+   <name>accesskey</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Direction indication for text that does not inherit
+                directionality.
+                Valid values are "LTR" (left-to-right) and "RTL"
+                (right-to-left).
+            </description>
+   <name>dir</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that characters that are sensitive
+                in HTML and XML markup must be escaped. If omitted, this
+                flag is assumed to be "true".
+            </description>
+   <name>escape</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Client identifier of the component for which this element
+                is a label.
+            </description>
+   <name>for</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Code describing the language used in the generated markup
+                for this component.
+            </description>
+   <name>lang</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus.
+            </description>
+   <name>onblur</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                clicked over this element.
+            </description>
+   <name>onclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                double clicked over this element.
+            </description>
+   <name>ondblclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element receives focus.
+            </description>
+   <name>onfocus</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed down over this element.
+            </description>
+   <name>onkeydown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed and released over this element.
+            </description>
+   <name>onkeypress</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                released over this element.
+            </description>
+   <name>onkeyup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                pressed down over this element.
+            </description>
+   <name>onmousedown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved within this element.
+            </description>
+   <name>onmousemove</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved away from this element.
+            </description>
+   <name>onmouseout</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved onto this element.
+            </description>
+   <name>onmouseover</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                released over this element.
+            </description>
+   <name>onmouseup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                CSS style(s) to be applied when this component is rendered.
+            </description>
+   <name>style</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Possui valor default.
+                Space-separated list of CSS style class(es) to be applied when
+                this element is rendered. This value must be passed through
+                as the "class" attribute on generated markup.
+            </description>
+   <name>styleClass</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Position of this element in the tabbing order
+                for the current document. This value must be
+                an integer between 0 and 32767.
+            </description>
+   <name>tabindex</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Advisory title information about markup elements generated
+                for this component.
+            </description>
+   <name>title</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The ValueExpression linking this component to a property in a
+                backing bean
+            </description>
+   <name>binding</name>
+   <required>false</required>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+ </tag>
+ <tag>
+  <description>
+            &lt;p&gt;Renders an HTML "input" element of "type" "password".&lt;/p&gt;
+            &lt;p&gt;Decode Behavior&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt;See the decode description for the &lt;a
+            href="javax.faces.Inputjavax.faces.Text.html#encode"&gt;Input
+            Text&lt;/a&gt; renderer.&lt;/p&gt;
+            &lt;/ul&gt;
+            &lt;p&gt;Encode Behavior&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt;
+            Render the clientId of the component as the value of the "name"
+            attribute. Render the current value of the component as the value
+            of the "value" attribute, if and only if the "redisplay" component
+            attribute is the string "true". If the "styleClass" attribute is
+            specified, render its value as the value of the "class"
+            attribute.&lt;/p&gt;
+            &lt;/ul&gt;
+        </description>
+  <tag-name>inputSecret</tag-name>
+  <component>
+   <component-type>customInputSecret</component-type>
+   <renderer-type>org.gpe.inputSecret</renderer-type>
+   <handler-class/>
+  </component>
+  <attribute>
+   <description>Indica o label que será renderizado junto com o componente caso ele esteja dentro de um containerFormulario.</description>
+   <name>label</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Indica se o componente agrupa outros componentes. 
+				Uma de suas utilizações é de informar ao containerFormulario que
+				ele deve considerar apenas os filhos deste componente para serem escritos.
+				Valor default é false</description>
+   <name>groupComponent</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>Indica se o símbolo de campo obrigatório deve ser mostrado junto com o inputText.
+Valor default 'false'.</description>
+   <name>obrigatorio</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Converter instance registered with this component.
+            </description>
+   <name>converter</name>
+   <required>false</required>
+   <type>javax.faces.convert.Converter</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the converter message, replacing any message
+                that comes from the converter.
+            </description>
+   <name>converterMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The component identifier for this component. This value must be
+                unique within the closest parent component that is a naming
+                container.
+            </description>
+   <name>id</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component's value must be
+                converted and validated immediately (that is, during
+                Apply Request Values phase), rather than waiting
+                until Process Validations phase.
+            </description>
+   <name>immediate</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating whether or not this component should be rendered
+                (during Render Response Phase), or processed on any subsequent
+                form submit. The default value for this property is true.
+            </description>
+   <name>rendered</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that the user is required to provide a submitted
+                value for this input component.
+            </description>
+   <name>required</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validation message for the "required"
+                facility, if the "required" facility is used.
+            </description>
+   <name>requiredMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                MethodExpression representing a validator method that will be
+                called
+                during Process Validations to perform correctness checks on the
+                value of this component. The expression must evaluate to a
+                public
+                method that takes FacesContext, UIComponent, and Object
+                parameters,
+                with a return type of void.
+            </description>
+   <name>validator</name>
+   <required>false</required>
+   <method-signature>void validate(javax.faces.context.FacesContext,
+                javax.faces.component.UIComponent, java.lang.Object)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validator message, replacing any
+                message that comes from the validator.
+            </description>
+   <name>validatorMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The current value of this component.
+            </description>
+   <name>value</name>
+   <required>false</required>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>
+                &lt;p&gt;
+                MethodExpression representing a value change listener method
+                that will be notified when a new value has been set for this
+                input component. The expression must evaluate to a public
+                method that takes a &lt;code&gt;ValueChangeEvent&lt;/code&gt;
+                parameter,
+                with a return type of void, &lt;span class="changed_added_2_0"&gt;or
+                to a public method that takes no arguments with a return type
+                of void. In the latter case, the method has no way of easily
+                knowing what the new value is, but this can be useful in cases
+                where a notification is needed that "this value
+                changed".&lt;/span&gt;
+                &lt;/p&gt;
+            </description>
+   <name>valueChangeListener</name>
+   <required>false</required>
+   <method-signature>void
+                valueChange(javax.faces.event.ValueChangeEvent)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                Access key that, when pressed, transfers focus
+                to this element.
+            </description>
+   <name>accesskey</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Alternate textual description of the
+                element rendered by this component.
+            </description>
+   <name>alt</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                If the value of this attribute is "off", render "off" as the
+                value
+                of the attribute. This indicates that the browser should
+                disable its autocomplete feature for this component. This is
+                useful for components that perform autocompletion and do not
+                want the browser interfering. If this attribute is not set or
+                the value
+                is "on", render nothing.
+            </description>
+   <name>autocomplete</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Direction indication for text that does not inherit
+                directionality.
+                Valid values are "LTR" (left-to-right) and "RTL"
+                (right-to-left).
+            </description>
+   <name>dir</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this element must never receive focus or
+                be included in a subsequent submit. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as disabled="disabled".
+            </description>
+   <name>disabled</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Code describing the language used in the generated markup
+                for this component.
+            </description>
+   <name>lang</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The maximum number of characters that may
+                be entered in this field.
+            </description>
+   <name>maxlength</name>
+   <required>false</required>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus.
+            </description>
+   <name>onblur</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus
+                and its value has been modified since gaining focus.
+            </description>
+   <name>onchange</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                clicked over this element.
+            </description>
+   <name>onclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                double clicked over this element.
+            </description>
+   <name>ondblclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element receives focus.
+            </description>
+   <name>onfocus</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed down over this element.
+            </description>
+   <name>onkeydown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed and released over this element.
+            </description>
+   <name>onkeypress</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                released over this element.
+            </description>
+   <name>onkeyup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                pressed down over this element.
+            </description>
+   <name>onmousedown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved within this element.
+            </description>
+   <name>onmousemove</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved away from this element.
+            </description>
+   <name>onmouseout</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved onto this element.
+            </description>
+   <name>onmouseover</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                released over this element.
+            </description>
+   <name>onmouseup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when text within this
+                element is selected by the user.
+            </description>
+   <name>onselect</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component will prohibit changes by
+                the user. The element may receive focus unless it has also
+                been disabled. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as readonly="readonly".
+            </description>
+   <name>readonly</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that any existing value
+                in this field should be rendered when the
+                form is created. Because this is a potential
+                security risk, password values are not
+                displayed by default.
+            </description>
+   <name>redisplay</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                The number of characters used to determine
+                the width of this field.
+            </description>
+   <name>size</name>
+   <required>false</required>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <description>
+                CSS style(s) to be applied when this component is rendered.
+            </description>
+   <name>style</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Space-separated list of CSS style class(es) to be applied when
+                this element is rendered. This value must be passed through
+                as the "class" attribute on generated markup.
+            </description>
+   <name>styleClass</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Position of this element in the tabbing order
+                for the current document. This value must be
+                an integer between 0 and 32767.
+            </description>
+   <name>tabindex</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Advisory title information about markup elements generated
+                for this component.
+            </description>
+   <name>title</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The ValueExpression linking this component to a property in a
+                backing bean
+            </description>
+   <name>binding</name>
+   <required>false</required>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+ </tag>
+ <tag>
+  <tag-name>tooltip</tag-name>
+  <component>
+   <component-type>customToolTip</component-type>
+   <renderer-type>org.richfaces.TooltipRenderer</renderer-type>
+   <handler-class>br.com.gpetec.view.components.ToolTipHandler</handler-class>
+  </component>
+  <attribute>
+   <description>Indica se o componente agrupa outros componentes. 
+				Uma de suas utilizações é de informar ao containerFormulario que
+				ele deve considerar apenas os filhos deste componente para serem escritos.
+				Valor default é false</description>
+   <name>groupComponent</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <name>attached</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>The value binding expression used to wire up this component to a component property of a JavaBean class</description>
+   <name>binding</name>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+  <attribute>
+   <description>Converter instance registered with this component.</description>
+   <display-name>Converter</display-name>
+   <name>converter</name>
+   <type>javax.faces.convert.Converter</type>
+  </attribute>
+  <attribute>
+   <name>data</name>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <name>dir</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Valor default 'bottomLeft'</description>
+   <name>direction</name>
+   <type>org.richfaces.component.Positioning</type>
+  </attribute>
+  <attribute>
+   <description>Sempre é true</description>
+   <name>followMouse</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <name>hideDelay</name>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <name>hideEvent</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>horizontalOffset</name>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <description>The component identifier for this component. This value must be unique within the closest parent component that is a naming container.</description>
+   <display-name>Component Identifier</display-name>
+   <name>id</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>jointPoint</name>
+   <type>org.richfaces.component.Positioning</type>
+  </attribute>
+  <attribute>
+   <name>lang</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>layout</name>
+   <type>org.richfaces.TooltipLayout</type>
+  </attribute>
+  <attribute>
+   <name>limitRender</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <name>mode</name>
+   <type>org.richfaces.TooltipMode</type>
+  </attribute>
+  <attribute>
+   <name>onbeforedomupdate</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onbeforehide</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onbeforeshow</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onbegin</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onclick</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>oncomplete</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>ondblclick</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onhide</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onmousedown</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onmousemove</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onmouseout</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onmouseover</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onmouseup</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onshow</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>render</name>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>Flag indicating whether or not this component should be rendered (during Render Response Phase), or processed on any subsequent form submit. The default value for this property is true.</description>
+   <display-name>Rendered Flag</display-name>
+   <name>rendered</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>Valor default 500.</description>
+   <name>showDelay</name>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <name>showEvent</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>status</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>style</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Possui valor default.</description>
+   <name>styleClass</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>target</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>title</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>The current value of this component.
+É uma string que será exibida dentro do toolTip.</description>
+   <display-name>Value</display-name>
+   <name>value</name>
+   <required>true</required>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <name>verticalOffset</name>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <name>zindex</name>
+   <type>int</type>
+  </attribute>
+ </tag>
+ <tag>
+  <tag-name>commandLink</tag-name>
+  <component>
+   <component-type>customCommandLink</component-type>
+   <renderer-type>gpe.commandLink</renderer-type>
+   <handler-class>br.com.gpetec.view.components.handler.CommandLinkHandler</handler-class>
+  </component>
+  <attribute>
+   <description>Indica se o componente agrupa outros componentes. 
+				Uma de suas utilizações é de informar ao containerFormulario que
+				ele deve considerar apenas os filhos deste componente para serem escritos.
+				Valor default é false</description>
+   <name>groupComponent</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>MethodExpression representing the application action to invoke when this component is activated by the user. The expression must evaluate to a public method that takes no parameters, and returns an Object (the toString() of which is called to derive the logical outcome) which is passed to the NavigationHandler for this application.</description>
+   <display-name>Application Action</display-name>
+   <name>action</name>
+   <type>javax.faces.el.MethodBinding</type>
+  </attribute>
+  <attribute>
+   <description>&lt;p&gt; MethodExpression representing an action listener method that will be notified when this component is activated by the user. The expression must evaluate to a public method that takes an ActionEvent parameter, with a return type of void, &lt;span class="changed_added_2_0"&gt;or to a public method that takes no arguments with a return type of void. In the latter case, the method has no way of easily knowing where the event came from, but this can be useful in cases where a notification is needed that "some action happened".&lt;/span&gt; &lt;/p&gt;</description>
+   <display-name>Action Listener</display-name>
+   <name>actionListener</name>
+   <type>javax.faces.el.MethodBinding</type>
+  </attribute>
+  <attribute>
+   <description>The value binding expression used to wire up this component to a component property of a JavaBean class</description>
+   <name>binding</name>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+  <attribute>
+   <name>bypassUpdates</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>The character encoding of the resource designated by this hyperlink.</description>
+   <display-name>Character Set</display-name>
+   <name>charset</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>The position and shape of the hot spot on the screen (for use in client-side image maps).</description>
+   <display-name>Coordinates</display-name>
+   <name>coords</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>data</name>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>Flag indicating that this element must never receive focus or be included in a subsequent submit.</description>
+   <display-name>Disabled Flag</display-name>
+   <name>disabled</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <name>execute</name>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>The language code of the resource designated by this hyperlink.</description>
+   <display-name>Language</display-name>
+   <name>hreflang</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>The component identifier for this component. This value must be unique within the closest parent component that is a naming container.</description>
+   <display-name>Component Identifier</display-name>
+   <name>id</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase.</description>
+   <display-name>Immediate Action</display-name>
+   <name>immediate</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <name>limitRender</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <name>onbeforedomupdate</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onbegin</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a pointer button is clicked over this element.</description>
+   <display-name>Button Click Script</display-name>
+   <name>onclick</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>oncomplete</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a pointer button is double clicked over this element.</description>
+   <display-name>Double Click Script</display-name>
+   <name>ondblclick</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a key is pressed down over this element.</description>
+   <display-name>Key Down Script</display-name>
+   <name>onkeydown</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a key is pressed and released over this element.</description>
+   <display-name>Key Press Script</display-name>
+   <name>onkeypress</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a key is released over this element.</description>
+   <display-name>Key Up Script</display-name>
+   <name>onkeyup</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a pointer button is pressed down over this element.</description>
+   <display-name>Mouse Down Script</display-name>
+   <name>onmousedown</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a pointer button is moved within this element.</description>
+   <display-name>Mouse Move Script</display-name>
+   <name>onmousemove</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a pointer button is moved away from this element.</description>
+   <display-name>Mouse Out Script</display-name>
+   <name>onmouseout</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a pointer button is moved onto this element.</description>
+   <display-name>Mouse Over Script</display-name>
+   <name>onmouseover</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Javascript code executed when a pointer button is released over this element.</description>
+   <display-name>Mouse Up Script</display-name>
+   <name>onmouseup</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>The relationship from the current document to the anchor specified by this hyperlink. The value of this attribute is a space-separated list of link types.</description>
+   <display-name>Relationship</display-name>
+   <name>rel</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>render</name>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>Flag indicating whether or not this component should be rendered (during Render Response Phase), or processed on any subsequent form submit. The default value for this property is true.</description>
+   <display-name>Rendered Flag</display-name>
+   <name>rendered</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>A reverse link from the anchor specified by this hyperlink to the current document. The value of this attribute is a space-separated list of link types.</description>
+   <display-name>Reverse Link</display-name>
+   <name>rev</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>The shape of the hot spot on the screen (for use in client-side image maps). Valid values are: default (entire region); rect (rectangular region); circle (circular region); and poly (polygonal region).</description>
+   <display-name>Shape</display-name>
+   <name>shape</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Status default 'processando'.</description>
+   <name>status</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>CSS style(s) to be applied when this component is rendered.</description>
+   <display-name>CSS Styles</display-name>
+   <name>style</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Deprecated. Não é mais utilizado.
+Space-separated list of CSS style class(es) to be applied when this element is rendered. This value must be passed through as the "class" attribute on generated markup.</description>
+   <display-name>CSS Style Classes</display-name>
+   <name>styleClass</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Advisory title information about markup elements generated for this component.</description>
+   <display-name>Advisory Title</display-name>
+   <name>title</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>The content type of the resource designated by this hyperlink.</description>
+   <display-name>Content Type</display-name>
+   <name>type</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>The current value of this component.
+Texto que aparecerá no botão.</description>
+   <display-name>Value</display-name>
+   <name>value</name>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>Indica qual o estilo que será usado no botão.</description>
+   <name>crud</name>
+   <type>br.com.gpetec.view.components.CustomCommandLink.Crud</type>
+  </attribute>
+  <attribute>
+   <description>Conteúdo do toolTip que aparecerá ao passar o mouse sobre o componente</description>
+   <name>tituloToolTip</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Posicionamento do tooltip associado a este componente.</description>
+   <name>toolTipDirection</name>
+   <type>org.richfaces.component.Positioning</type>
+  </attribute>
+  <attribute>
+   <description>For Knockout.js use.</description>
+   <name>data-bind</name>
+  </attribute>
+ </tag>
+ <tag>
+  <description>
+            &lt;p&gt;Renders an HTML "textarea" element.&lt;/p&gt;
+            &lt;p&gt;Decode Behavior&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt;See the encode description for the &lt;a
+            href="javax.faces.Inputjavax.faces.Text.html#encode"&gt;Input
+            Text&lt;/a&gt; renderer.&lt;/p&gt;
+            &lt;/ul&gt;
+            &lt;p&gt;Encode Behavior&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt; Render the
+            clientId as the value of the "name" attribute. Render the current
+            valu eof the component inside the "textarea"
+            element.&lt;/p&gt; &lt;/ul&gt;
+        </description>
+  <tag-name>inputTextArea</tag-name>
+  <component>
+   <component-type>customInputTextArea</component-type>
+   <renderer-type>org.gpe.textArea</renderer-type>
+   <handler-class/>
+  </component>
+  <attribute>
+   <description>Indica se o componente agrupa outros componentes. 
+				Uma de suas utilizações é de informar ao containerFormulario que
+				ele deve considerar apenas os filhos deste componente para serem escritos.
+				Valor default é false</description>
+   <name>groupComponent</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>Indica o label que será renderizado junto com o componente.</description>
+   <name>label</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Converter instance registered with this component.
+            </description>
+   <name>converter</name>
+   <required>false</required>
+   <type>javax.faces.convert.Converter</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the converter message, replacing any message
+                that comes from the converter.
+            </description>
+   <name>converterMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The component identifier for this component. This value must be
+                unique within the closest parent component that is a naming
+                container.
+            </description>
+   <name>id</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component's value must be
+                converted and validated immediately (that is, during
+                Apply Request Values phase), rather than waiting
+                until Process Validations phase.
+            </description>
+   <name>immediate</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating whether or not this component should be rendered
+                (during Render Response Phase), or processed on any subsequent
+                form submit. The default value for this property is true.
+            </description>
+   <name>rendered</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that the user is required to provide a submitted
+                value for this input component.
+            </description>
+   <name>required</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validation message for the "required"
+                facility, if the "required" facility is used.
+            </description>
+   <name>requiredMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                MethodExpression representing a validator method that will be
+                called
+                during Process Validations to perform correctness checks on the
+                value of this component. The expression must evaluate to a
+                public
+                method that takes FacesContext, UIComponent, and Object
+                parameters,
+                with a return type of void.
+            </description>
+   <name>validator</name>
+   <required>false</required>
+   <method-signature>void validate(javax.faces.context.FacesContext,
+                javax.faces.component.UIComponent, java.lang.Object)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validator message, replacing any
+                message that comes from the validator.
+            </description>
+   <name>validatorMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The current value of this component.
+            </description>
+   <name>value</name>
+   <required>false</required>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>
+                &lt;p&gt;
+                MethodExpression representing a value change listener method
+                that will be notified when a new value has been set for this
+                input component. The expression must evaluate to a public
+                method that takes a &lt;code&gt;ValueChangeEvent&lt;/code&gt;
+                parameter,
+                with a return type of void, &lt;span class="changed_added_2_0"&gt;or
+                to a public method that takes no arguments with a return type
+                of void. In the latter case, the method has no way of easily
+                knowing what the new value is, but this can be useful in cases
+                where a notification is needed that "this value
+                changed".&lt;/span&gt;
+                &lt;/p&gt;
+            </description>
+   <name>valueChangeListener</name>
+   <required>false</required>
+   <method-signature>void
+                valueChange(javax.faces.event.ValueChangeEvent)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                Access key that, when pressed, transfers focus
+                to this element.
+            </description>
+   <name>accesskey</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The number of columns to be displayed.
+            </description>
+   <name>cols</name>
+   <required>false</required>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <description>
+                Direction indication for text that does not inherit
+                directionality.
+                Valid values are "LTR" (left-to-right) and "RTL"
+                (right-to-left).
+            </description>
+   <name>dir</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this element must never receive focus or
+                be included in a subsequent submit. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as disabled="disabled".
+            </description>
+   <name>disabled</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Code describing the language used in the generated markup
+                for this component.
+            </description>
+   <name>lang</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus.
+            </description>
+   <name>onblur</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus
+                and its value has been modified since gaining focus.
+            </description>
+   <name>onchange</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                clicked over this element.
+            </description>
+   <name>onclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                double clicked over this element.
+            </description>
+   <name>ondblclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element receives focus.
+            </description>
+   <name>onfocus</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed down over this element.
+            </description>
+   <name>onkeydown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed and released over this element.
+            </description>
+   <name>onkeypress</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                released over this element.
+            </description>
+   <name>onkeyup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                pressed down over this element.
+            </description>
+   <name>onmousedown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved within this element.
+            </description>
+   <name>onmousemove</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved away from this element.
+            </description>
+   <name>onmouseout</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved onto this element.
+            </description>
+   <name>onmouseover</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                released over this element.
+            </description>
+   <name>onmouseup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when text within this
+                element is selected by the user.
+            </description>
+   <name>onselect</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component will prohibit changes by
+                the user. The element may receive focus unless it has also
+                been disabled. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as readonly="readonly".
+            </description>
+   <name>readonly</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                The number of rows to be displayed.
+            Valor default '4'.</description>
+   <name>rows</name>
+   <required>false</required>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <description>
+                CSS style(s) to be applied when this component is rendered.
+            </description>
+   <name>style</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Possui valor default.
+                Space-separated list of CSS style class(es) to be applied when
+                this element is rendered. This value must be passed through
+                as the "class" attribute on generated markup.
+            </description>
+   <name>styleClass</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Position of this element in the tabbing order
+                for the current document. This value must be
+                an integer between 0 and 32767.
+            </description>
+   <name>tabindex</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Advisory title information about markup elements generated
+                for this component.
+            </description>
+   <name>title</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The ValueExpression linking this component to a property in a
+                backing bean
+            </description>
+   <name>binding</name>
+   <required>false</required>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+  <attribute>
+   <description>Largura do textArea.
+Valor default '423px';</description>
+   <name>width</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Classe usada no label gerado pelo componente.</description>
+   <name>styleClassLabel</name>
+   <type>java.lang.String</type>
+  </attribute>
+ </tag>
+ <tag>
+  <tag-name>dataTable</tag-name>
+  <component>
+   <component-type>customDataTable</component-type>
+   <renderer-type>org.richfaces.DataTableRenderer</renderer-type>
+   <handler-class/>
+  </component>
+  <attribute>
+   <description>The value binding expression used to wire up this component to a component property of a JavaBean class</description>
+   <name>binding</name>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+  <attribute>
+   <name>captionClass</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>columnClasses</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>filterVar</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>first</name>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <name>footerClass</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>headerClass</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>The component identifier for this component. This value must be unique within the closest parent component that is a naming container.</description>
+   <display-name>Component Identifier</display-name>
+   <name>id</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>iterationStatusVar</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>keepSaved</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <name>noDataLabel</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onrowclick</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onrowdblclick</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onrowkeydown</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onrowkeypress</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onrowkeyup</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onrowmousedown</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onrowmousemove</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Não usado.</description>
+   <name>onrowmouseout</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Não usado.</description>
+   <name>onrowmouseover</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>onrowmouseup</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Flag indicating whether or not this component should be rendered (during Render Response Phase), or processed on any subsequent form submit. The default value for this property is true.</description>
+   <display-name>Rendered Flag</display-name>
+   <name>rendered</name>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <name>rowClass</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Possui valor default.</description>
+   <name>rowClasses</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>rowKeyConverter</name>
+   <type>javax.faces.convert.Converter</type>
+  </attribute>
+  <attribute>
+   <name>rowKeyVar</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>rows</name>
+   <type>int</type>
+  </attribute>
+  <attribute>
+   <name>sortMode</name>
+   <type>org.richfaces.model.SortMode</type>
+  </attribute>
+  <attribute>
+   <name>sortPriority</name>
+   <type>java.util.Collection</type>
+  </attribute>
+  <attribute>
+   <name>stateVar</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>style</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Não usado.</description>
+   <name>styleClass</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <name>value</name>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <name>var</name>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Indica qual coluna ocupará todo o espaço que sobra da tabela.
+As colunas vão de 0 - [total de colunas - 1]</description>
+   <name>columnWidthAuto</name>
+   <type>boolean</type>
+  </attribute>
+ </tag>
+ <tag>
+  <description>
+            &lt;p&gt;Renders an HTML "input" element of type "checkbox".&lt;/p&gt;
+            &lt;p&gt;Decode Behavior&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt;Obtain the &lt;code&gt;Map&lt;/code&gt; from the
+            "requestParameterMap"
+            property of the &lt;code&gt;ExternalContext&lt;/code&gt;. If there
+            is no
+            entry in the &lt;code&gt;Map&lt;/code&gt; for the "clientId" of this
+            component, pass "false" to the &lt;code&gt;setSubmittedValue()&lt;/code&gt;
+            method of the component, which must be an instance of
+            &lt;code&gt;EditableValueHolder&lt;/code&gt;. If there is an entry,
+            and its
+            value is equal, ignoring case and without quotes, to any of the
+            Strings: "on", "yes" or "true" pass true to the
+            &lt;code&gt;setSubmittedValue()&lt;/code&gt; method of the
+            component.&lt;/p&gt;
+            &lt;/ul&gt;
+            &lt;p&gt;Encode Behavior&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt;
+            Render the clientId of the component as the value of the "name"
+            attribute. If the current value of the component is "true",
+            output the "checked" attribute (must be rendered as
+            checked="checked").
+            If the "styleClass" attribute is specified, render its value as the
+            value
+            of the "class" attribute.&lt;/p&gt; &lt;/ul&gt;
+        </description>
+  <tag-name>selectBooleanCheckbox</tag-name>
+  <component>
+   <component-type>customSelectBooleanCheckbox</component-type>
+   <renderer-type>gpe.checkbox</renderer-type>
+   <handler-class/>
+  </component>
+  <attribute>
+   <description>Indica se o componente agrupa outros componentes. 
+				Uma de suas utilizações é de informar ao containerFormulario que
+				ele deve considerar apenas os filhos deste componente para serem escritos.
+				Valor default é false</description>
+   <name>groupComponent</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>Indica o label que será renderizado junto com o componente caso ele esteja dentro de um containerFormulario.</description>
+   <name>label</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Converter instance registered with this component.
+            </description>
+   <name>converter</name>
+   <required>false</required>
+   <type>javax.faces.convert.Converter</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the converter message, replacing any message
+                that comes from the converter.
+            </description>
+   <name>converterMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The component identifier for this component. This value must be
+                unique within the closest parent component that is a naming
+                container.
+            </description>
+   <name>id</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component's value must be
+                converted and validated immediately (that is, during
+                Apply Request Values phase), rather than waiting
+                until Process Validations phase.
+            </description>
+   <name>immediate</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating whether or not this component should be rendered
+                (during Render Response Phase), or processed on any subsequent
+                form submit. The default value for this property is true.
+            </description>
+   <name>rendered</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that the user is required to provide a submitted
+                value for this input component.
+            </description>
+   <name>required</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validation message for the "required"
+                facility, if the "required" facility is used.
+            </description>
+   <name>requiredMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                MethodExpression representing a validator method that will be
+                called
+                during Process Validations to perform correctness checks on the
+                value of this component. The expression must evaluate to a
+                public
+                method that takes FacesContext, UIComponent, and Object
+                parameters,
+                with a return type of void.
+            </description>
+   <name>validator</name>
+   <required>false</required>
+   <method-signature>void validate(javax.faces.context.FacesContext,
+                javax.faces.component.UIComponent, java.lang.Object)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validator message, replacing any
+                message that comes from the validator.
+            </description>
+   <name>validatorMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The current value of this component.
+            </description>
+   <name>value</name>
+   <required>false</required>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                &lt;p&gt;
+                MethodExpression representing a value change listener method
+                that will be notified when a new value has been set for this
+                input component. The expression must evaluate to a public
+                method that takes a &lt;code&gt;ValueChangeEvent&lt;/code&gt;
+                parameter,
+                with a return type of void, &lt;span class="changed_added_2_0"&gt;or
+                to a public method that takes no arguments with a return type
+                of void. In the latter case, the method has no way of easily
+                knowing what the new value is, but this can be useful in cases
+                where a notification is needed that "this value
+                changed".&lt;/span&gt;
+                &lt;/p&gt;
+            </description>
+   <name>valueChangeListener</name>
+   <required>false</required>
+   <method-signature>void
+                valueChange(javax.faces.event.ValueChangeEvent)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                Access key that, when pressed, transfers focus
+                to this element.
+            </description>
+   <name>accesskey</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Direction indication for text that does not inherit
+                directionality.
+                Valid values are "LTR" (left-to-right) and "RTL"
+                (right-to-left).
+            </description>
+   <name>dir</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this element must never receive focus or
+                be included in a subsequent submit. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as disabled="disabled".
+            </description>
+   <name>disabled</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Code describing the language used in the generated markup
+                for this component.
+            </description>
+   <name>lang</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus.
+            </description>
+   <name>onblur</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus
+                and its value has been modified since gaining focus.
+            </description>
+   <name>onchange</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                clicked over this element.
+            </description>
+   <name>onclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                double clicked over this element.
+            </description>
+   <name>ondblclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element receives focus.
+            </description>
+   <name>onfocus</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed down over this element.
+            </description>
+   <name>onkeydown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed and released over this element.
+            </description>
+   <name>onkeypress</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                released over this element.
+            </description>
+   <name>onkeyup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                pressed down over this element.
+            </description>
+   <name>onmousedown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved within this element.
+            </description>
+   <name>onmousemove</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved away from this element.
+            </description>
+   <name>onmouseout</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved onto this element.
+            </description>
+   <name>onmouseover</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                released over this element.
+            </description>
+   <name>onmouseup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when text within this
+                element is selected by the user.
+            </description>
+   <name>onselect</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component will prohibit changes by
+                the user. The element may receive focus unless it has also
+                been disabled. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as readonly="readonly".
+            </description>
+   <name>readonly</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                CSS style(s) to be applied when this component is rendered.
+            </description>
+   <name>style</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Space-separated list of CSS style class(es) to be applied when
+                this element is rendered. This value must be passed through
+                as the "class" attribute on generated markup.
+            </description>
+   <name>styleClass</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Position of this element in the tabbing order
+                for the current document. This value must be
+                an integer between 0 and 32767.
+            </description>
+   <name>tabindex</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Advisory title information about markup elements generated
+                for this component.
+            </description>
+   <name>title</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The ValueExpression linking this component to a property in a
+                backing bean
+            </description>
+   <name>binding</name>
+   <required>false</required>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+ </tag>
+ <tag>
+  <description>
+            &lt;p&gt;Render an HTML option list.&lt;/p&gt;
+            &lt;p&gt;&lt;a name="decode"&gt;Decode Behavior&lt;/a&gt;&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt;See the &lt;a
+            href="SelectManyListbox.html"&gt;"Decode
+            Behavior for UISelectOne Components"&lt;/a&gt; section.&lt;/p&gt;
+            &lt;/ul&gt;
+            &lt;p&gt;Encode Behavior&lt;/p&gt;
+            &lt;ul&gt;
+            &lt;p&gt;Render an HTML "select" element. Render the clientId of the
+            component as the value of the "name" attribute. If the
+            "styleClass" attribute is specified, render its value as the value
+            of the "class" attribute on the "select" element. If the component
+            to be rendered is a UISelectMany, render "true" as the value of
+            the "multiple" attribute. Use the number of items as the value of
+            the "size" attribute. See the &lt;a
+            href="SelectManyListbox.html"&gt;"Rendering
+            the option elements" &lt;/a&gt; specification for
+            &lt;code&gt;ListboxRenderer&lt;/code&gt; for more detail on how to
+            render the
+            "option" elements in this renderer.&lt;/p&gt;
+            &lt;/ul&gt;
+        </description>
+  <tag-name>selectOneMenu</tag-name>
+  <component>
+   <component-type>customSelectOneMenu</component-type>
+   <handler-class/>
+  </component>
+  <attribute>
+   <description>Indica se o componente agrupa outros componentes. 
+				Uma de suas utilizações é de informar ao containerFormulario que
+				ele deve considerar apenas os filhos deste componente para serem escritos.
+				Valor default é false</description>
+   <name>groupComponent</name>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>Indica o label que será renderizado junto com o componente caso ele esteja dentro de um containerFormulario.</description>
+   <name>label</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Converter instance registered with this component.
+            </description>
+   <name>converter</name>
+   <required>false</required>
+   <type>javax.faces.convert.Converter</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the converter message, replacing any message
+                that comes from the converter.
+            </description>
+   <name>converterMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The component identifier for this component. This value must be
+                unique within the closest parent component that is a naming
+                container.
+            </description>
+   <name>id</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component's value must be
+                converted and validated immediately (that is, during
+                Apply Request Values phase), rather than waiting
+                until Process Validations phase.
+            </description>
+   <name>immediate</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating whether or not this component should be rendered
+                (during Render Response Phase), or processed on any subsequent
+                form submit. The default value for this property is true.
+            </description>
+   <name>rendered</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that the user is required to provide a submitted
+                value for this input component.
+            </description>
+   <name>required</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validation message for the "required"
+                facility, if the "required" facility is used.
+            </description>
+   <name>requiredMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                MethodExpression representing a validator method that will be
+                called
+                during Process Validations to perform correctness checks on the
+                value of this component. The expression must evaluate to a
+                public
+                method that takes FacesContext, UIComponent, and Object
+                parameters,
+                with a return type of void.
+            </description>
+   <name>validator</name>
+   <required>false</required>
+   <method-signature>void validate(javax.faces.context.FacesContext,
+                javax.faces.component.UIComponent, java.lang.Object)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                A ValueExpression enabled attribute that, if present, will be
+                used as the text of the validator message, replacing any
+                message that comes from the validator.
+            </description>
+   <name>validatorMessage</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The current value of this component.
+            </description>
+   <name>value</name>
+   <required>false</required>
+   <type>java.lang.Object</type>
+  </attribute>
+  <attribute>
+   <description>
+                &lt;p&gt;
+                MethodExpression representing a value change listener method
+                that will be notified when a new value has been set for this
+                input component. The expression must evaluate to a public
+                method that takes a &lt;code&gt;ValueChangeEvent&lt;/code&gt;
+                parameter,
+                with a return type of void, &lt;span class="changed_added_2_0"&gt;or
+                to a public method that takes no arguments with a return type
+                of void. In the latter case, the method has no way of easily
+                knowing what the new value is, but this can be useful in cases
+                where a notification is needed that "this value
+                changed".&lt;/span&gt;
+                &lt;/p&gt;
+            </description>
+   <name>valueChangeListener</name>
+   <required>false</required>
+   <method-signature>void
+                valueChange(javax.faces.event.ValueChangeEvent)</method-signature>
+  </attribute>
+  <attribute>
+   <description>
+                Access key that, when pressed, transfers focus
+                to this element.
+            </description>
+   <name>accesskey</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Direction indication for text that does not inherit
+                directionality.
+                Valid values are "LTR" (left-to-right) and "RTL"
+                (right-to-left).
+            </description>
+   <name>dir</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this element must never receive focus or
+                be included in a subsequent submit. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as disabled="disabled".
+            </description>
+   <name>disabled</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                CSS style class to apply to the rendered label
+                on disabled options.
+            </description>
+   <name>disabledClass</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                CSS style class to apply to the rendered label
+                on enabled options.
+            </description>
+   <name>enabledClass</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                &lt;p class="changed_modified_2_0"&gt;
+                Flag indicating that, if this component is activated by the
+                user,
+                The "no selection option", if any, must be hidden.&lt;/p&gt;
+            </description>
+   <name>hideNoSelectionOption</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                Code describing the language used in the generated markup
+                for this component.
+            </description>
+   <name>lang</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus.
+            </description>
+   <name>onblur</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element loses focus
+                and its value has been modified since gaining focus.
+            </description>
+   <name>onchange</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                clicked over this element.
+            </description>
+   <name>onclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                double clicked over this element.
+            </description>
+   <name>ondblclick</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when this element receives focus.
+            </description>
+   <name>onfocus</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed down over this element.
+            </description>
+   <name>onkeydown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                pressed and released over this element.
+            </description>
+   <name>onkeypress</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a key is
+                released over this element.
+            </description>
+   <name>onkeyup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                pressed down over this element.
+            </description>
+   <name>onmousedown</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved within this element.
+            </description>
+   <name>onmousemove</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved away from this element.
+            </description>
+   <name>onmouseout</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                moved onto this element.
+            </description>
+   <name>onmouseover</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when a pointer button is
+                released over this element.
+            </description>
+   <name>onmouseup</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Javascript code executed when text within this
+                element is selected by the user.
+            </description>
+   <name>onselect</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Flag indicating that this component will prohibit changes by
+                the user. The element may receive focus unless it has also
+                been disabled. A value of false causes
+                no attribute to be rendered, while a value of true causes the
+                attribute to be rendered as readonly="readonly".
+            </description>
+   <name>readonly</name>
+   <required>false</required>
+   <type>boolean</type>
+  </attribute>
+  <attribute>
+   <description>
+                CSS style(s) to be applied when this component is rendered.
+            </description>
+   <name>style</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Space-separated list of CSS style class(es) to be applied when
+                this element is rendered. This value must be passed through
+                as the "class" attribute on generated markup.
+            </description>
+   <name>styleClass</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Position of this element in the tabbing order
+                for the current document. This value must be
+                an integer between 0 and 32767.
+            </description>
+   <name>tabindex</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                Advisory title information about markup elements generated
+                for this component.
+            </description>
+   <name>title</name>
+   <required>false</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>
+                The ValueExpression linking this component to a property in a
+                backing bean
+            </description>
+   <name>binding</name>
+   <required>false</required>
+   <type>javax.faces.component.UIComponent</type>
+  </attribute>
+ </tag>
+ <tag>
+  <tag-name>data</tag-name>
+  <source>../../componentes/formulario/data.xhtml</source>
+ </tag>
+ <tag>
+  <description>Handler para gerar um snippet de código jQuery para criar uma função nomeada, executar uma query num seletor ou fazer bind de uma função em um evento no resultado de um seletor</description>
+  <tag-name>jQuerySelector</tag-name>
+  <component>
+   <component-type>jQuerySelector</component-type>
+   <handler-class>br.com.gpetec.view.components.JQuerySelectorHandler</handler-class>
+  </component>
+  <attribute>
+   <name>rendered</name>
+   <required>no</required>
+   <type>java.lang.Boolean</type>
+  </attribute>
+  <attribute>
+   <description>O tipo de Event Attach que é realizado. Os possiveis podem ser encontrados em: br.com.gpetec.view.components.JQuerySelectorHandler.JQueryAttachType</description>
+   <name>attachType</name>
+   <required>no</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>O evento que será utilizado para fazer 'attach' no seletor. e.g: onclick, onkeyup, etc...</description>
+   <name>event</name>
+   <required>no</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Nome da função gerada</description>
+   <name>name</name>
+   <required>no</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Query será executada junto ao seletor. e.g: Foca(...) - irá gerar jQuery(selector).Foca(...);</description>
+   <name>query</name>
+   <required>no</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Seletor utilizado para executar o attach de evento ou o query.</description>
+   <name>selector</name>
+   <required>no</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Indica o momento em que o script será executado. Os possiveis valores podem ser encontrados em: br.com.gpetec.view.components.JQuerySelectorHandler.JQueryTiming</description>
+   <name>timing</name>
+   <required>no</required>
+   <type>java.lang.String</type>
+  </attribute>
+  <attribute>
+   <description>Indica se o componente será renderizado no lugar onde está ou no final da página. O default é inline</description>
+   <name>inline</name>
+   <required>no</required>
+   <type>java.lang.Boolean</type>
+  </attribute>
+ </tag>
+ <tag>
+  <tag-name>inputHidden</tag-name>
+  <component>
+   <component-type>customInputHidden</component-type>
+   <renderer-type>org.gpe.inputHidden</renderer-type>
+   <handler-class/>
+  </component>
+  <attribute>
+   <name>id</name>
+  </attribute>
+  <attribute>
+   <name>rendered</name>
+  </attribute>
+  <attribute>
+   <name>value</name>
+  </attribute>
+ </tag>
+</facelet-taglib>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.faces.context.ResponseWriter"/>
+<fullyQualifiedTypeName name="org.primefaces.util.Constants"/>
+<fullyQualifiedTypeName name="org.primefaces.util.Constants.RequestParams"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.lang.StringBuilder"/>
+<fullyQualifiedTypeName name="com.primefaces.components.SocketEvent"/>
+<fullyQualifiedTypeName name="org.primefaces.renderkit.CoreRenderer"/>
+<fullyQualifiedTypeName name="com.primefaces.components.SocketErrorEvent"/>
+<fullyQualifiedTypeName name="java.util.logging.Logger"/>
+<fullyQualifiedTypeName name="org.apache.http.client.HttpClient"/>
+<fullyQualifiedTypeName name="org.apache.http.impl.client.DefaultHttpClient"/>
+<fullyQualifiedTypeName name="org.apache.http.util.EntityUtils"/>
+<fullyQualifiedTypeName name="org.primefaces.json.JSONArray"/>
+<fullyQualifiedTypeName name="org.primefaces.json.JSONObject"/>
+</qualifiedTypeNameHistroy>

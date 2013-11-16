@@ -1,0 +1,117 @@
+package com.primefaces.components;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.faces.component.UIComponent;
+import javax.faces.component.behavior.ClientBehavior;
+import javax.faces.component.behavior.ClientBehaviorContext;
+import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
+import javax.faces.render.FacesRenderer;
+
+import org.primefaces.renderkit.CoreRenderer;
+
+@FacesRenderer(componentFamily = CustomSocket.COMPONENT_FAMILY, rendererType = CustomSocketRenderer.RENDERER_TYPE)
+public class CustomSocketRenderer extends CoreRenderer {
+
+	public static final String RENDERER_TYPE = "gpe.sh.socket";
+	
+	@Override
+	public void decode(FacesContext context, UIComponent component) {
+		decodeBehaviors(context, component);
+	}
+	
+	@Override
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+		if(!(component instanceof CustomSocket)){
+			return;
+		}
+		
+		getEndTextToRender(context, (CustomSocket)component);
+	}
+
+	protected void getEndTextToRender(FacesContext context, CustomSocket socket) throws IOException {
+		encodeScript(context, socket);
+	}
+	
+	private void encodeScript(FacesContext context, CustomSocket socket) throws IOException {
+		ResponseWriter writer = context.getResponseWriter();
+		StringBuilder js = new StringBuilder();
+		
+		writer.startElement("script", socket);
+		writer.writeAttribute("type", "text/javascript", null);
+		
+		js.append("SH.push.init({");
+		
+		if(socket.getWidgetVar() != null) {
+			js.append("widgetVar: '").append(socket.getWidgetVar()).append("', ");
+		}
+		
+		if(socket.getAutoConnect() != null && socket.getAutoConnect()) {
+			js.append("autoConnect: true, ");
+		}
+		
+		if(socket.getChannel() != null) {
+			js.append("channel: '").append(socket.getChannel()).append("', ");
+		}
+		
+		if(socket.getOnMessage() != null) {
+			js.append("onMessage: ").append(socket.getOnMessage()).append(", ");
+		}
+		
+		if(socket.getOnError() != null) {
+			js.append("onError: ").append(socket.getOnError()).append(", ");
+		}
+		
+		js.append("behaviorOnMessage: ").append(encodeBehavior(context, socket, "message")).append(", ");
+		js.append("behaviorOnError: ").append(encodeBehavior(context, socket, "error")).append(", ");
+		
+		js.append("});");
+		
+		writer.writeText(js, null);
+		writer.endElement("script");
+	}
+	
+	@Override
+	public boolean getRendersChildren() {
+		return true;
+	}
+	
+	private String encodeBehavior(FacesContext context, ClientBehaviorHolder component, String event){
+		List<ClientBehavior> behaviors = component.getClientBehaviors().get(event);
+		
+		if(behaviors != null) {
+			List<ClientBehaviorContext.Parameter> params = Collections.emptyList();
+			String clientId = ((UIComponent) component).getClientId(context); 
+			StringBuilder js = new StringBuilder();
+			
+			js.append("function(args) {");
+			
+			if(event.equals("message")) {
+				js.append("arguments[1] = [");
+				
+				js.append("];");
+			}
+			
+			for(Iterator<ClientBehavior> behaviorIter = behaviors.iterator(); behaviorIter.hasNext();) {
+				ClientBehavior behavior = behaviorIter.next();
+				ClientBehaviorContext cbc = ClientBehaviorContext.createClientBehaviorContext(context, (UIComponent) component, event, clientId, params);
+				String script = behavior.getScript(cbc);
+				
+				if(script != null) {
+					js.append(script);
+				}
+			}
+			
+			js.append("}");
+			
+			return js.toString();
+		}
+		
+		return null;
+	}
+}

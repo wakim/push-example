@@ -1,0 +1,5 @@
+package com.primefaces.pusher;
+
+public class HMACDigest {
+
+}

@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3c.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:sh="http://componentes.gpe/component/sh">
+	<h:head>
+	    <link type="text/css" rel="stylesheet" href="themes/bluesky/skin.css" />
+	    <script src="http://code.jquery.com/jquery-2.0.3.js"></script>
+	    <script src="http://static.localhost/js/pubnub.min.js"></script>
+        <script src="http://static.localhost/js/pubnub-crypto.min.js"></script>
+        <script src="http://static.localhost/js/App.js"></script>
+	</h:head>
+	<h:body>
+	    <center>
+	    <p:panel header="Login Form" style="width: 350;">
+	        <h:form>
+	            <h:panelGrid columns="2" cellpadding="2">
+	                <h:outputLabel for="#{userManagedBean.username}" value="UserName"/>
+	                <h:inputText value="#{userManagedBean.username}" label="UserName"></h:inputText>
+	                <h:outputLabel for="#{userManagedBean.password}" value="Password"/>
+	                <h:inputSecret value="#{userManagedBean.password}"></h:inputSecret>
+	                <h:commandButton type="submit" value="Login" action="#{userManagedBean.login}"></h:commandButton>
+	            </h:panelGrid>
+	            <sh:socket channel="testando" autoConnect="true">
+	            	<p:ajax event="socket" listener="#{userManagedBean.onSocketMessage}" />
+	            </sh:socket>
+	        </h:form>
+	    </p:panel>
+	    <div><h:messages></h:messages></div>
+	    </center>
+	</h:body>
+</html>

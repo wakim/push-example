@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+  <sub-deployment name="jsf_samples.war">
+  </sub-deployment>
+  <sub-deployment name="Sistema.jar">
+  </sub-deployment>
+  <deployment>
+    <exclusions>
+        <module name="javax.faces.api" slot="main" />
+        <module name="com.sun.jsf-impl" slot="main" />
+    </exclusions>
+  </deployment>
+</jboss-deployment-structure>

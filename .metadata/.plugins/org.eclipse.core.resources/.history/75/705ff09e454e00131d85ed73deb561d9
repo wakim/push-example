@@ -1,0 +1,9 @@
+package com.primefaces.pusher.service;
+
+import com.pusher.Pusher;
+
+public class PusherService {
+	public void triggerEvent(String channelName, String eventName, JSONObject data) {
+		Pusher.triggerPush(channelName, eventName, jsonData)
+	}
+}

@@ -1,0 +1,10 @@
+package com.primefaces.servlet;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet(name="PusherAuthenticationServlet", urlPatterns=new String[{}])
+public class PusherAuthServlet extends HttpServlet {
+	private static final long serialVersionUID = -1975754668041256508L;
+
+}

@@ -1,0 +1,56 @@
+package br.com.gpetec.view.components.ko.taskboard;
+
+import javax.faces.component.UIComponent;
+import javax.faces.component.behavior.Behavior;
+import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.event.AjaxBehaviorListener;
+import javax.faces.event.FacesListener;
+
+import br.com.gpetec.scrumhalf.vo.FaseVO;
+import br.com.gpetec.scrumhalf.vo.HistoriaVO;
+import br.com.gpetec.scrumhalf.vo.TarefaVO;
+
+public class DropEvent extends AjaxBehaviorEvent{
+	
+	private static final long serialVersionUID = 32945374979480662L;
+	private HistoriaVO historia;
+	private FaseVO faseOrigem;
+	private FaseVO faseDestino;
+	private TarefaVO tarefa;
+	
+	public DropEvent(UIComponent component, Behavior behavior, HistoriaVO historia, FaseVO faseOrigem, FaseVO faseDestino, TarefaVO tarefa) {
+		super(component, behavior);
+		this.historia = historia;
+		this.faseOrigem = faseOrigem;
+		this.faseDestino = faseDestino;
+		this.tarefa = tarefa;
+	}
+	
+	@Override
+	public boolean isAppropriateListener(FacesListener faceslistener) {
+		return (faceslistener instanceof AjaxBehaviorListener);
+	}
+
+	@Override
+	public void processListener(FacesListener faceslistener) {
+        ((AjaxBehaviorListener) faceslistener).processAjaxBehavior(this);
+	}
+
+	public HistoriaVO getHistoria() {
+		return historia;
+	}
+
+	public FaseVO getFaseOrigem() {
+		return faseOrigem;
+	}
+
+	public FaseVO getFaseDestino() {
+		return faseDestino;
+	}
+
+	public TarefaVO getTarefa() {
+		return tarefa;
+	}
+
+	
+}
