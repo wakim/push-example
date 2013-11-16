@@ -77,7 +77,11 @@ window.SH.push = (
 			};
 			
 			connector.uuid = function() {
-				return PUBNUB.uuid();
+				if(this.uuid) {
+					return this.uuid;
+				}
+				
+				return this.uuid = PUBNUB.uuid();
 			};
 			
 			return connector;
