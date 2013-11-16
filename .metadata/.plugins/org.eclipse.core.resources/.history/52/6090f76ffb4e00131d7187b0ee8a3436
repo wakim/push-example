@@ -1,0 +1,157 @@
+window.SH = {};
+
+window.SH.push = (
+	function() {
+		
+		function PushConnector(){}
+		
+		PushConnector.prototype.init = function(){};
+		PushConnector.prototype.connect = function(channel, event, onMessage, clientEnabled, onError){};
+		PushConnector.prototype.disconnect = function(channel) {};
+		PushConnector.prototype.publish = function(channel, event, message) {};
+		PushConnector.prototype.uuid = function() { return null; };
+		
+		var PusherConnector = function() {
+			
+			this.prototype = PushConnector.prototype;
+			
+			this.prototype.init = function() {
+				this.pusher = new Pusher('74c8e3a5bc3f420957e2', {authEndpoint: '/pusher/auth'});
+			};
+			
+			this.prototype.connect = function(channel, event, onMessage, clientEnabled, onError) {
+				this.channel = this.pusher.subscribe('private-' + channel);
+				this.channel.bind(event, onMessage);
+				
+				if(clientEnabled) {
+					this.channel.bind('client-' + event, onMessage);
+				}
+				
+				this.channel.bind('pusher:subscription_error', onError);
+			};
+			
+			this.prototype.disconnect = function(channel) {
+				this.pusher.disconnect();
+			};
+			
+			this.prototype.publish = function (channel, event, message) {
+				this.channel.trigger('client-' + event, message);
+			};
+			
+			this.prototype.uuid = function() {
+				return this.pusher.connection.socket_id;
+			};
+		};
+		
+		var PubnubConnector = function() {};
+		
+		(function() {
+			
+			PubnubConnector.prototype.init = function() {
+				PUBNUB.init({
+					subscribe_key : 'sub-c-c6932830-4d93-11e3-86a5-02ee2ddab7fe'
+					,publish_key : 'pub-c-35e68a47-e48e-4f04-90eb-c2fa4c94d5e7'
+				});
+			};
+			
+			PubnubConnector.prototype.connect = function(channel, event, onMessage, clientEnabled, onError) {
+				PUBNUB.subscribe({
+					channel: channel,
+					message: onMessage,
+					error: onError,
+					restore: true
+				});
+			};
+			
+			PubnubConnector.prototype.disconnect = function(channel) {
+				PUBNUB.unsubscribe({
+					channel : channel
+				});
+			};
+			
+			PubnubConnector.prototype.publish = function(channel, event, message) {
+				PUBNUB.publish({
+					channel: channel,
+					message: message
+				});
+			};
+			
+			PubnubConnector.prototype.uuid = function() {
+				if(this.uuid) {
+					return this.uuid;
+				}
+				
+				return this.uuid = PUBNUB.uuid();
+			};
+		})();
+		
+		var initialized = false;
+		
+		var pushConnector = new PusherConnector();
+		
+		var init = function(options) {
+			if(! initialized) {
+				pushConnector.init();
+			}
+			
+			var WidgetVar = function () {
+				this.connect = function() {
+					var onMessage = function(data) {
+						
+						var noReply = ((typeof data['no-reply']) != 'undefined' && data['no-reply']);
+						var uuid = pushConnector.uuid();
+						
+						if(data.uuid != null && uuid != null && data.uuid === uuid) {
+							return;
+						}
+						
+						if(! noReply && options.onMessage) {
+							options.onMessage.call(this, data.message);
+						}
+						
+						if(! noReply && options.behaviorOnMessage) {
+							options.behaviorOnMessage.call(this, {'data': data.message, 'uuid': uuid});
+						}
+						
+						console.log(data);
+					};
+					
+					var onError = function() {
+						if(options.onError) {
+							options.onError.call(this);
+						}
+						
+						if(options.behaviorOnError) {
+							options.behaviorOnError.call(this);
+						}
+					};
+					
+					pushConnector.connect(options.channel, options.event || 'sh-all', onMessage, (typeof options.onMessage === 'function'), onError);
+				};
+				
+				this.disconnect = function() {
+					pushConnector.disconnect(options.channel);
+				};
+				
+				this.publish = function(message) {
+					var uuid = pushConnector.uuid();
+					pushConnector.publish(options.channel, options.event || 'sh-all', {'message': message, 'uuid': uuid});
+				};
+			};
+			
+			var wv = new WidgetVar();
+			
+			if(options.widgetVar) {
+				window[options.widgetVar] = wv;
+			}
+			
+			if(options.autoConnect) {
+				$(function() {
+					wv.connect();
+				});
+			}
+		};
+		
+		return {init : init};
+	}
+)();

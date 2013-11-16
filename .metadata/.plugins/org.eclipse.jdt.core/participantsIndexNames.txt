@@ -1,3 +1,5 @@
 INDEX VERSION 1.126
+D:\work\push-example\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2235781645.index
+\PrimeFaces\src
 D:\work\JSF_tests\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2235781645.index
 \PrimeFaces\src

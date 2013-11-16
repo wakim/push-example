@@ -40,11 +40,13 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="PubNubConnector"/>
 			<item value="Pusher"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="PubNubConnector"/>
 			<item value="Pusher"/>
 		</list>
 		<list key="projectNameTemplate">
