@@ -1,0 +1,192 @@
+window.SH = {};
+
+window.SH.push = (
+	function() {
+		
+		function PushConnector(){}
+		
+		PushConnector.prototype.init = function(){};
+		PushConnector.prototype.connect = function(channel, event, onMessage, clientEnabled, onError){};
+		PushConnector.prototype.disconnect = function(channel) {};
+		PushConnector.prototype.publish = function(channel, event, message) {};
+		PushConnector.prototype.uuid = function() { return null; };
+		PushConnector.prototype.subscribePresence = function(clientId, channel){};
+		
+		var PusherConnector = function() {
+			
+			this.init = function() {
+				this.pusher = new Pusher('74c8e3a5bc3f420957e2', {authEndpoint: '/pusher/auth'});
+			};
+			
+			this.connect = function(channel, event, onMessage, clientEnabled, onError) {
+				this.channel = this.pusher.subscribe(channel);
+				this.channel.bind(event, onMessage);
+				
+				if(clientEnabled) {
+					this.channel.bind('client-' + event, onMessage);
+				}
+				
+				this.channel.bind('pusher:subscription_error', onError);
+			};
+			
+			this.disconnect = function(channel) {
+				this.pusher.disconnect();
+			};
+			
+			this.publish = function (channel, event, message) {
+				this.channel.trigger('client-' + event, message);
+			};
+			
+			this.uuid = function() {
+				return this.pusher.connection.socket_id;
+			};
+			
+			this.subscribePresence = function(clientId, channel) {
+				this.presenceChannel = this.pusher.subscribe('presence-' + channel);
+				
+				this.presenceChannel.bind('pusher:member_added', function(member) {
+					var area = document.getElementById(clientId + "-presence-list");
+					var item = document.createElement('p');
+					
+					console.log('member_added');
+					
+					item.innerHTML = 'user-' + member.id;
+					item.setAttribute('id', 'user-' + member.id);
+					
+					area.appendChild(item);
+				});
+				this.presenceChannel.bind('pusher:member_removed', function(member) {
+					var memberDOM = document.getElementById('user-' + member.id);
+					
+					console.log('member_removed');
+					console.log(member);
+					
+					memberDOM.parentNode.removeChild(memberDOM);
+				});
+				
+				this.presenceChannel.bind('pusher:subscription_succeeded', function(member) {
+					var area = document.getElementById(clientId + "-presence-list");
+					
+					console.log('subscription_succeeded');
+					console.log(member);
+					
+					members.each(function(member) {
+						var item = document.createElement('p');
+						
+						item.innerHTML = 'user-' + member.id;
+						item.setAttribute('id', 'user-' + member.id);
+						
+						area.appendChild(item);
+					});
+				});
+			};
+		};
+		
+		PusherConnector.prototype = PushConnector.prototype;
+		
+		var PubnubConnector = function() {
+			
+			this.init = function() {
+				PUBNUB.init({
+					subscribe_key : 'sub-c-c6932830-4d93-11e3-86a5-02ee2ddab7fe'
+					,publish_key : 'pub-c-35e68a47-e48e-4f04-90eb-c2fa4c94d5e7'
+				});
+			};
+			
+			this.connect = function(channel, event, onMessage, clientEnabled, onError) {
+				PUBNUB.subscribe({
+					channel: channel,
+					message: onMessage,
+					error: onError,
+					restore: true
+				});
+			};
+			
+			this.disconnect = function(channel) {
+				PUBNUB.unsubscribe({
+					channel : channel
+				});
+			};
+			
+			this.publish = function(channel, event, message) {
+				PUBNUB.publish({
+					channel: channel,
+					message: message
+				});
+			};
+			
+			this.uuid = function() {
+				return this.uuid || (this.uuid = PUBNUB.uuid());
+			};
+		};
+		
+		PubnubConnector.prototype = PushConnector.prototype;
+		
+		var init = function(options) {
+			
+			var WidgetVar = function () {
+				
+				var connector = new PusherConnector();
+				connector.init();
+				
+				this.connect = function() {
+					var onMessage = function(data) {
+						
+						var noReply = ((typeof data['no-reply']) != 'undefined' && data['no-reply']);
+						var uuid = connector.uuid();
+						
+						if(data.uuid != null && uuid != null && data.uuid === uuid) {
+							return;
+						}
+						
+						if(! noReply && options.onMessage) {
+							options.onMessage.call(this, data);
+						}
+						
+						if(! noReply && options.behaviorOnMessage) {
+							options.behaviorOnMessage.call(this, {'data': data.message, 'uuid': uuid});
+						}
+						
+						console.log(data);
+					};
+					
+					var onError = function() {
+						if(options.onError) {
+							options.onError.call(this);
+						}
+						
+						if(options.behaviorOnError) {
+							options.behaviorOnError.call(this);
+						}
+					};
+					
+					connector.connect(options.channel, options.event || 'sh-all', onMessage, (typeof options.onMessage === 'function'), onError);
+					connector.subscribePresence(options.id, options.channel);
+				};
+				
+				this.disconnect = function() {
+					connector.disconnect(options.channel);
+				};
+				
+				this.publish = function(message, event) {
+					var uuid = connector.uuid();
+					connector.publish(options.channel, event || options.event || 'sh-all', {'message': message, 'uuid': uuid});
+				};
+			};
+			
+			var wv = new WidgetVar();
+			
+			if(options.widgetVar) {
+				window[options.widgetVar] = wv;
+			}
+			
+			if(options.autoConnect) {
+				$(function() {
+					wv.connect();
+				});
+			}
+		};
+		
+		return {init : init};
+	}
+)();

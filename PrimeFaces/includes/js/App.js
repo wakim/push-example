@@ -10,6 +10,7 @@ window.SH.push = (
 		PushConnector.prototype.disconnect = function(channel) {};
 		PushConnector.prototype.publish = function(channel, event, message) {};
 		PushConnector.prototype.uuid = function() { return null; };
+		PushConnector.prototype.subscribePresence = function(clientId, channel){};
 		
 		var PusherConnector = function() {
 			
@@ -18,7 +19,7 @@ window.SH.push = (
 			};
 			
 			this.connect = function(channel, event, onMessage, clientEnabled, onError) {
-				this.channel = this.pusher.subscribe('private-' + channel);
+				this.channel = this.pusher.subscribe(channel);
 				this.channel.bind(event, onMessage);
 				
 				if(clientEnabled) {
@@ -38,6 +39,46 @@ window.SH.push = (
 			
 			this.uuid = function() {
 				return this.pusher.connection.socket_id;
+			};
+			
+			this.subscribePresence = function(clientId, channel) {
+				this.presenceChannel = this.pusher.subscribe('presence-' + channel);
+				
+				this.presenceChannel.bind('pusher:member_added', function(member) {
+					var area = document.getElementById(clientId + "-presence-list");
+					var item = document.createElement('p');
+					
+					console.log('member_added');
+					
+					item.innerHTML = 'user-' + member.id;
+					item.setAttribute('id', 'user-' + member.id);
+					
+					area.appendChild(item);
+				});
+				this.presenceChannel.bind('pusher:member_removed', function(member) {
+					var memberDOM = document.getElementById('user-' + member.id);
+					
+					console.log('member_removed');
+					console.log(member);
+					
+					memberDOM.parentNode.removeChild(memberDOM);
+				});
+				
+				this.presenceChannel.bind('pusher:subscription_succeeded', function(members) {
+					var area = document.getElementById(clientId + "-presence-list");
+					
+					console.log('subscription_succeeded');
+					console.log(members);
+					
+					members.each(function(member) {
+						var item = document.createElement('p');
+						
+						item.innerHTML = 'user-' + member.id;
+						item.setAttribute('id', 'user-' + member.id);
+						
+						area.appendChild(item);
+					});
+				});
 			};
 		};
 		
@@ -120,15 +161,16 @@ window.SH.push = (
 					};
 					
 					connector.connect(options.channel, options.event || 'sh-all', onMessage, (typeof options.onMessage === 'function'), onError);
+					connector.subscribePresence(options.id, options.channel);
 				};
 				
 				this.disconnect = function() {
 					connector.disconnect(options.channel);
 				};
 				
-				this.publish = function(message) {
+				this.publish = function(message, event) {
 					var uuid = connector.uuid();
-					connector.publish(options.channel, options.event || 'sh-all', {'message': message, 'uuid': uuid});
+					connector.publish(options.channel, event || options.event || 'sh-all', {'message': message, 'uuid': uuid});
 				};
 			};
 			

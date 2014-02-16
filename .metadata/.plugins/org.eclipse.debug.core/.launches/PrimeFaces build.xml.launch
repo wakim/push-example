@@ -9,7 +9,7 @@
 <listEntry value="1"/>
 </listAttribute>
 <mapAttribute key="org.eclipse.debug.core.environmentVariables">
-<mapEntry key="ANT_HOME" value="J:\eclipse\plugins\org.apache.ant_1.8.4.v201303080030"/>
+<mapEntry key="ANT_HOME" value="D:\work\eclipse\plugins\org.apache.ant_1.8.4.v201303080030"/>
 <mapEntry key="JBOSS_HOME" value="${JBOSS_HOME}"/>
 <mapEntry key="STATIC_HOME" value="${STATIC_HOME}"/>
 </mapAttribute>
@@ -18,6 +18,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ant.internal.launching.remote.InternalAntRunner"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="PrimeFaces"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_ANT_TARGETS" value="exportResources,"/>
 <stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/PrimeFaces/build.xml}"/>
 <stringAttribute key="process_factory_id" value="org.eclipse.ant.ui.remoteAntProcessFactory"/>
 </launchConfiguration>

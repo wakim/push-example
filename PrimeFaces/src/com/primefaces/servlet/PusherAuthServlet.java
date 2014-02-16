@@ -20,6 +20,9 @@ public class PusherAuthServlet extends HttpServlet {
 	private static final String PUSHER_SECRET = "3c569e4428f95086de5b";
 	private static final String PUSHER_APP_KEY = "74c8e3a5bc3f420957e2";
 	
+	private static final String USER_NAME_PARAM = "USER_NAME", USER_ID_PARAM = "USER_ID";
+	private static Integer USER = 0;
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// Os parametros passados sao socket_id, channel.
@@ -34,9 +37,24 @@ public class PusherAuthServlet extends HttpServlet {
 		
 		if(validate(channel, socketId)) {
 			JSONObject response = new JSONObject();
+			JSONObject channelData = new JSONObject();
+			
+			if(req.getSession(true).getAttribute(USER_ID_PARAM) == null) {
+				synchronized (USER) {
+					int userId = USER++;
+					
+					req.getSession().setAttribute(USER_ID_PARAM, userId);
+					req.getSession().setAttribute(USER_NAME_PARAM, "user-" + userId);
+				}
+			}
 			
 			try {
-				response.put("auth", PUSHER_APP_KEY.concat(":").concat(HMACDigest.HMACDigestSHA256(socketId.concat(":").concat(channel), PUSHER_SECRET)));
+				
+				channelData.put("user_id", "" + req.getSession().getAttribute(USER_ID_PARAM));
+				channelData.put("user_name", "" + req.getSession().getAttribute(USER_NAME_PARAM));
+				
+				response.put("auth", PUSHER_APP_KEY.concat(":").concat(HMACDigest.HMACDigestSHA256(socketId.concat(":").concat(channel).concat(":").concat(channelData.toString()), PUSHER_SECRET)));
+				response.put("channel_data", channelData.toString());
 			} catch (JSONException e) {
 				resp.setStatus(500);
 				return;

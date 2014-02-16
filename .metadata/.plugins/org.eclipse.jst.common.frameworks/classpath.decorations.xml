@@ -1,5 +1,8 @@
 <classpath>
   <container id="PrimeFaces!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="D:/work/push-example/PrimeFaces/WebContent/WEB-INF/lib/primefaces-4.0.jar">
+      <source-attachment-path>C:/Users/Wakim/.m2/repository/org/primefaces/primefaces/4.0/primefaces-4.0-sources.jar</source-attachment-path>
+    </entry>
     <entry id="D:/work/push-example/PrimeFaces/WebContent/WEB-INF/lib/PusherConnector.jar">
       <source-attachment-path>/PusherConnector</source-attachment-path>
     </entry>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.faces.context.ResponseWriter"/>
 <fullyQualifiedTypeName name="org.primefaces.util.Constants"/>
 <fullyQualifiedTypeName name="org.primefaces.util.Constants.RequestParams"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
@@ -20,5 +19,9 @@
 <fullyQualifiedTypeName name="java.util.logging.Logger"/>
 <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
 <fullyQualifiedTypeName name="com.pubnub.api.Pubnub"/>
+<fullyQualifiedTypeName name="javax.faces.event.BehaviorEvent"/>
+<fullyQualifiedTypeName name="javax.faces.component.behavior.Behavior"/>
+<fullyQualifiedTypeName name="javax.faces.component.behavior.BehaviorBase"/>
 <fullyQualifiedTypeName name="org.primefaces.json.JSONObject"/>
+<fullyQualifiedTypeName name="javax.faces.context.ResponseWriter"/>
 </qualifiedTypeNameHistroy>

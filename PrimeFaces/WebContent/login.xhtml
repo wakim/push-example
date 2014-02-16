@@ -6,7 +6,8 @@
 	<h:head>
 <!-- 	    <script type="text/javascript" src="http://static.localhost/js/pubnub.min.js"></script> -->
 <!--         <script type="text/javascript" src="http://static.localhost/js/pubnub-crypto.min.js"></script> -->
-		<script type="text/javascript" src="http://static.localhost/js/pusher.min.js"></script>
+<!-- 		<script type="text/javascript" src="http://static.localhost/js/pusher.min.js"></script> -->
+		<script type="text/javascript" src="http://js.pusher.com/2.1/pusher.js"></script>
         <script type="text/javascript" src="http://static.localhost/js/App.js"></script>
 	</h:head>
 	<h:body>
@@ -20,11 +21,8 @@
 	                <h:inputSecret value="#{userManagedBean.password}"></h:inputSecret>
 	                <h:commandButton type="submit" value="Login" action="#{userManagedBean.login}"></h:commandButton>
 	            </h:panelGrid>
-	            <sh:socket channel="testando" autoConnect="true" widgetVar="push" onMessage="function(data) { console.log(data); }">
-	            	<p:ajax event="message" listener="#{userManagedBean.onSocketMessage}" />
-	            </sh:socket>
 	            
-	            <sh:socket channel="testando2" autoConnect="true" widgetVar="push2" onMessage="function(data) { console.log(data); }">
+	            <sh:socket channel="testando" autoConnect="true" widgetVar="push" onMessage="function(data) { console.log(data); }" id="channel">
 	            	<p:ajax event="message" listener="#{userManagedBean.onSocketMessage}" />
 	            </sh:socket>
 	        </h:form>
