@@ -15,7 +15,7 @@ window.SH.push = (
 		var PusherConnector = function() {
 			
 			this.init = function() {
-				this.pusher = new Pusher('74c8e3a5bc3f420957e2', {authEndpoint: '/pusher/auth'});
+				this.pusher = new Pusher('INSERT_YOUR_PUSHER_APP_CLIENT_KEY', {authEndpoint: '/pusher/auth'});
 			};
 			
 			this.connect = function(channel, event, onMessage, clientEnabled, onError) {
@@ -88,8 +88,8 @@ window.SH.push = (
 			
 			this.init = function() {
 				PUBNUB.init({
-					subscribe_key : 'sub-c-c6932830-4d93-11e3-86a5-02ee2ddab7fe'
-					,publish_key : 'pub-c-35e68a47-e48e-4f04-90eb-c2fa4c94d5e7'
+					subscribe_key : 'INSERT_YOUR_PUBNUB_SUBSCRIBE_KEY'
+					,publish_key : 'INSERT_YOUR_PUBNUB_PUBLISH_KEY'
 				});
 			};
 			

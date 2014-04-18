@@ -43,17 +43,17 @@ public class Pusher {
 	/**
 	 * Pusher Application Identifier
 	 */
-	private final static String pusherApplicationId = "59507";
+	private final static String pusherApplicationId = "INSERT_YOUR_PUSHER_APP_ID";
 	
 	/**
 	 * Pusher Application Key
 	 */
-	private final static String pusherApplicationKey = "74c8e3a5bc3f420957e2";
+	private final static String pusherApplicationKey = "INSERT_YOUR_PUSHER_APP_KEY";
 	
 	/**
 	 * Pusher Secret
 	 */
-	private final static String pusherApplicationSecret = "3c569e4428f95086de5b";
+	private final static String pusherApplicationSecret = "INSERT_YOUR_PUSHER_APP_SECRET";
 	
 	/**
 	 * Converts a byte array to a string representation
